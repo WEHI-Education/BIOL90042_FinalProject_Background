@@ -6,6 +6,7 @@ format:
     self-contained: true
     toc: true
     toc-location: left
+output-file: index.html
 ---
 
 # Background
@@ -104,12 +105,10 @@ The gyroscope data is collected transmitted in real time and processed by the WE
 
 # Data analysis tips
 
-1.  Each student should create a new R project in a new directory, named `BIOL90042_final_[groupid]` , replacing \[groupid\] with your unique group number.
+1.  Each student should create a new R project in a new directory, named `BIOL90042_final_group[id]` , replacing \[id\] with your unique group number.
 2.  Create sub-directories e.g.
 
 analysis/
-
-data/
 
 data_processed/
 
@@ -117,7 +116,7 @@ charts/
 
 tables/
 
-3.  Download the project data pack into `BIOL90042_final_[groupid]/data/`
+3.  Download the project data pack as `BIOL90042_final_group[id]/data`
 
 Students can opt to focus on one dataset each at first, then work together to compile results and look for links between datasets.
 
@@ -130,9 +129,9 @@ To avoid file naming conflicts, we suggest to **name scripts with your initials*
 
 Similarly, **append your initials to plots and data** saved from your scripts e.g.
 
-`ggsave(charts/prs_plot_BA.pdf)`
+`ggsave('charts/prs_plot_BA.pdf')`
 
-`write_tsv('data_processed/prs_summary_BA.tsv)`
+`write_tsv('data_processed/prs_summary_BA.tsv')`
 :::
 
 # Presentation tips
@@ -145,11 +144,17 @@ Communicating scientific findings requires convincing your audience that the dat
 
 Create a new .R script analysis/explore_data.R
 
+```{r}
+#| eval: false
+library(tidyverse)
+library(limma)
+```
+
 ### Gene labels
 
 ```{r}
 #| eval: false
-anno <- readRDS(glue('{datadir}/entrez_genename_key.Rds'))
+anno <- readRDS('data/entrez_genename_key.Rds')
 ```
 
 Gene name (symbols), Entrez gene ID number, and description.
@@ -158,7 +163,7 @@ Gene name (symbols), Entrez gene ID number, and description.
 
 ```{r}
 #| eval: false
-gene_go <- read_rds(glue('{datadir}/gene_ontology.Rds'))
+gene_go <- read_rds('data/gene_ontology.Rds')
 ```
 
 Human genes grouped into gene ontology 'gene sets'. Gene ontology term ID (go_id), Term description, and Entrez gene ID numbers.
@@ -167,7 +172,7 @@ Human genes grouped into gene ontology 'gene sets'. Gene ontology term ID (go_id
 
 ```{r}
 #| eval: false
-load(glue('{datadir}/prs.Rda'))
+load('data/prs.Rda')
 ```
 
 Top hits from PD GWAS \[**gwas_top_hits**\]. The alternate allele (**alt**) is the allele that increases disease risk. The **beta** describes the unit increase in disease risk for each additional risk allele.
@@ -178,7 +183,7 @@ Case and control genotype data \[**ca_co_genotypes**\]. For each of 150 cases an
 
 ```{r}
 #| eval: false
-load(glue('{datadir}/rnaseq.Rda'))
+load('data/rnaseq.Rda')
 
 dge$counts
 dge$samples
@@ -191,7 +196,7 @@ A DGEList object \[**dge**\] containing counts, samples and genes information.
 
 ```{r}
 #| eval: false
-load(glue('{datadir}/drugscreen.Rda'))
+load('data/drugscreen.Rda')
 ```
 
 Drug screening plate luminescence results \[**plate1**\].
@@ -204,7 +209,7 @@ Dictionary of compound known target enzymes and mechanisms of action \[**compoun
 
 ```{r}
 #| eval: false
-load(glue('{datadir}/gait.Rda'))
+load('data/gait.Rda')
 ```
 
 \[**gait_data**\] contains information on the trial subject id (donorid), age, treatment arm, and exercise group, with 700 seconds of vertical orientation measurements taken whilst walking, from the wearable health-tech device.

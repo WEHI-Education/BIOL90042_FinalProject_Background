@@ -3219,16 +3219,15 @@ vertical-align: -.125em;
 <section id="data-analysis-tips" class="level1">
 <h1>Data analysis tips</h1>
 <ol type="1">
-<li>Each student should create a new R project in a new directory, named <code>BIOL90042_final_[groupid]</code> , replacing [groupid] with your unique group number.</li>
+<li>Each student should create a new R project in a new directory, named <code>BIOL90042_final_group[id]</code> , replacing [id] with your unique group number.</li>
 <li>Create sub-directories e.g.</li>
 </ol>
 <p>analysis/</p>
-<p>data/</p>
 <p>data_processed/</p>
 <p>charts/</p>
 <p>tables/</p>
 <ol start="3" type="1">
-<li>Download the project data pack into <code>BIOL90042_final_[groupid]/data/</code></li>
+<li>Download the project data pack as <code>BIOL90042_final_group[id]/data</code></li>
 </ol>
 <p>Students can opt to focus on one dataset each at first, then work together to compile results and look for links between datasets.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -3244,8 +3243,8 @@ Sharing across different laptops
 <p>Using a consistent project structure for all group members should allow analysis script files to be shared between team mates and to run on different machines without error.</p>
 <p>To avoid file naming conflicts, we suggest to <strong>name scripts with your initials</strong> e.g. <code>analysis/explore_prs_BA.R</code></p>
 <p>Similarly, <strong>append your initials to plots and data</strong> saved from your scripts e.g.</p>
-<p><code>ggsave(charts/prs_plot_BA.pdf)</code></p>
-<p><code>write_tsv(&#39;data_processed/prs_summary_BA.tsv)</code></p>
+<p><code>ggsave(&#39;charts/prs_plot_BA.pdf&#39;)</code></p>
+<p><code>write_tsv(&#39;data_processed/prs_summary_BA.tsv&#39;)</code></p>
 </div>
 </div>
 </section>
@@ -3257,24 +3256,28 @@ Sharing across different laptops
 <section id="data-exploration" class="level1">
 <h1>Data exploration</h1>
 <p>Create a new .R script analysis/explore_data.R</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(limma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="gene-labels" class="level3">
 <h3 class="anchored" data-anchor-id="gene-labels">Gene labels</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>anno <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">glue</span>(<span class="st">&#39;{datadir}/entrez_genename_key.Rds&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>anno <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&#39;data/entrez_genename_key.Rds&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Gene name (symbols), Entrez gene ID number, and description.</p>
 </section>
 <section id="gene-ontology-terms" class="level3">
 <h3 class="anchored" data-anchor-id="gene-ontology-terms">Gene Ontology terms</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gene_go <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="fu">glue</span>(<span class="st">&#39;{datadir}/gene_ontology.Rds&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gene_go <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&#39;data/gene_ontology.Rds&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Human genes grouped into gene ontology ‘gene sets’. Gene ontology term ID (go_id), Term description, and Entrez gene ID numbers.</p>
 </section>
 <section id="prs-data" class="level3">
 <h3 class="anchored" data-anchor-id="prs-data">PRS data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">glue</span>(<span class="st">&#39;{datadir}/prs.Rda&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/prs.Rda&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Top hits from PD GWAS [<strong>gwas_top_hits</strong>]. The alternate allele (<strong>alt</strong>) is the allele that increases disease risk. The <strong>beta</strong> describes the unit increase in disease risk for each additional risk allele.</p>
 <p>Case and control genotype data [<strong>ca_co_genotypes</strong>]. For each of 150 cases and 150 controls, this table details their alternate allele dosage at each significant PD GWAS locus.</p>
@@ -3282,18 +3285,18 @@ Sharing across different laptops
 <section id="rnaseq-data" class="level3">
 <h3 class="anchored" data-anchor-id="rnaseq-data">RNAseq data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">glue</span>(<span class="st">&#39;{datadir}/rnaseq.Rda&#39;</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>dge<span class="sc">$</span>counts</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>dge<span class="sc">$</span>samples</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dge<span class="sc">$</span>genes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/rnaseq.Rda&#39;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dge<span class="sc">$</span>counts</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dge<span class="sc">$</span>samples</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>dge<span class="sc">$</span>genes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A DGEList object [<strong>dge</strong>] containing counts, samples and genes information.</p>
 </section>
 <section id="drug-screen-data" class="level3">
 <h3 class="anchored" data-anchor-id="drug-screen-data">Drug screen data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">glue</span>(<span class="st">&#39;{datadir}/drugscreen.Rda&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/drugscreen.Rda&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Drug screening plate luminescence results [<strong>plate1</strong>].</p>
 <p>Drug screening test and control compound locations [<strong>plate_meta</strong>].</p>
@@ -3302,7 +3305,7 @@ Sharing across different laptops
 <section id="clinical-trial-data" class="level3">
 <h3 class="anchored" data-anchor-id="clinical-trial-data">Clinical trial data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">glue</span>(<span class="st">&#39;{datadir}/gait.Rda&#39;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;data/gait.Rda&#39;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>[<strong>gait_data</strong>] contains information on the trial subject id (donorid), age, treatment arm, and exercise group, with 700 seconds of vertical orientation measurements taken whilst walking, from the wearable health-tech device.</p>
 </section>
