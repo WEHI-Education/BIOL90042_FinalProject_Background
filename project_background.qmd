@@ -138,7 +138,7 @@ Similarly, **append your initials to plots and data** saved from your scripts e.
 
 ***Show first, then tell!***
 
-Communicating scientific findings requires convincing your audience that the data you have and the analysis steps you have taken, support your conclusions. This is best achieved by presenting graphs that represent the underlying data, and then adding statistical testing results as appropriate. Reporting summary statistics alone is rarely sufficient to convince your audience to accept your results.
+Communicating scientific findings requires convincing your audience that the data you have and the analysis steps you have taken, support your conclusions. This is best achieved by presenting graphs that represent the underlying data, and then adding statistical testing results as appropriate. Reporting summary statistics alone (e.g. using tables) is rarely sufficient to convince your audience to accept your results.
 
 # Data exploration
 
