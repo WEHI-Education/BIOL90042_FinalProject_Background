@@ -3119,7 +3119,6 @@ vertical-align: -.125em;
   <li><a href="#high-content-drug-screening-1" id="toc-high-content-drug-screening-1" class="nav-link" data-scroll-target="#high-content-drug-screening-1">High-content drug screening</a></li>
   <li><a href="#clinical-trials-1" id="toc-clinical-trials-1" class="nav-link" data-scroll-target="#clinical-trials-1">Clinical trials</a></li>
   <li><a href="#dataset-links" id="toc-dataset-links" class="nav-link" data-scroll-target="#dataset-links">Dataset links</a></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -3258,7 +3257,8 @@ Sharing across different laptops
 <p>Create a new .R script analysis/explore_data.R</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(limma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyrstats)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(limma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="gene-labels" class="level3">
 <h3 class="anchored" data-anchor-id="gene-labels">Gene labels</h3>
@@ -3309,8 +3309,8 @@ Sharing across different laptops
 </div>
 <p>[<strong>gait_data</strong>] contains information on the trial subject id (donorid), age, treatment arm, and exercise group, with 700 seconds of vertical orientation measurements taken whilst walking, from the wearable health-tech device.</p>
 </section>
-<section id="data-exploration-questions" class="level3">
-<h3 class="anchored" data-anchor-id="data-exploration-questions">Data exploration questions</h3>
+<section id="data-exploration-questions" class="level2">
+<h2 class="anchored" data-anchor-id="data-exploration-questions">Data exploration questions</h2>
 <ul>
 <li><p>What are the dimensions, column names, data structure and data types for each data set?</p></li>
 <li><p>What are the distributions of the numeric data? What is the unique value count for the categorical data?</p></li>
@@ -3351,9 +3351,6 @@ Sharing across different laptops
 <p>Aside from gene expression differences, what other demographic features distinguish the RNAseq cases from controls?</p>
 <p>Are any of the gene targets of hit compounds from the drug screen, differentially-expressed in RNAseq?</p>
 <p>Are there other demographic or genetic features that are associated with both gait, and response to treatment in the clinical trial?</p>
-</section>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section"></h3>
 </section>
 </section>
 

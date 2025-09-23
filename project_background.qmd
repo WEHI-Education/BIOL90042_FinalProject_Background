@@ -147,6 +147,7 @@ Create a new .R script analysis/explore_data.R
 ```{r}
 #| eval: false
 library(tidyverse)
+library(tidyrstats)
 library(limma)
 ```
 
@@ -214,7 +215,7 @@ load('data/gait.Rda')
 
 \[**gait_data**\] contains information on the trial subject id (donorid), age, treatment arm, and exercise group, with 700 seconds of vertical orientation measurements taken whilst walking, from the wearable health-tech device.
 
-### Data exploration questions
+## Data exploration questions
 
 -   What are the dimensions, column names, data structure and data types for each data set?
 
@@ -267,5 +268,3 @@ Aside from gene expression differences, what other demographic features distingu
 Are any of the gene targets of hit compounds from the drug screen, differentially-expressed in RNAseq?
 
 Are there other demographic or genetic features that are associated with both gait, and response to treatment in the clinical trial?
-
-### 
